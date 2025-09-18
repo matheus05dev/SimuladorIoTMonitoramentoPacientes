@@ -7,7 +7,7 @@ import random
 ATENDIMENTO_ID = 1
 
 # A URL da API base, com a variável de caminho
-API_BASE_URL = f"http://localhost:8080/api/atendimentos/{ATENDIMENTO_ID}/leituras"
+API_BASE_URL = f"http://localhost:8080/api/atendimento/{ATENDIMENTO_ID}/leituras"
 
 # Lista de tipos de dados para simular o enum
 TIPOS_DADO = ["TEMPERATURA", "FREQUENCIA_CARDIACA", "PRESSAO_ARTERIAL"]
