@@ -22,14 +22,14 @@ def gerar_dados_aleatorios():
 
     if tipo_dado == "TEMPERATURA":
         valor = round(random.uniform(36.0, 40.0), 2)
-        unidade = "°C"
+        unidade = "CELSIUS"
     elif tipo_dado == "FREQUENCIA_CARDIACA":
         valor = random.randint(60, 120)
-        unidade = "bpm"
+        unidade = "BPM"
     elif tipo_dado == "PRESSAO_ARTERIAL":
         # Um valor genérico para simplificar. O ideal seria ter dois valores (sistólica/diastólica)
         valor = random.randint(90, 140)
-        unidade = "mmHg"
+        unidade = "MMHG"
 
     return {"valor": valor, "tipoDado": tipo_dado, "unidadeMedida": unidade}
 
