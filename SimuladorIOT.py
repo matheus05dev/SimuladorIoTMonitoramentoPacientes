@@ -7,7 +7,7 @@ import random
 ATENDIMENTO_ID = 1
 
 # A URL da API base, com a variável de caminho
-API_BASE_URL = f"http://localhost:8080/api/atendimento/{ATENDIMENTO_ID}/leituras"
+API_BASE_URL = f"http://localhost:8080/api/leituras/atendimento/{ATENDIMENTO_ID}"
 
 # Lista de tipos de dados para simular o enum
 TIPOS_DADO = ["TEMPERATURA", "FREQUENCIA_CARDIACA", "PRESSAO_ARTERIAL"]
@@ -21,14 +21,14 @@ def gerar_dados_aleatorios():
     unidade = "string"
 
     if tipo_dado == "TEMPERATURA":
-        valor = round(random.uniform(36.0, 40.0), 2)
+        valor = round(random.uniform(30.0, 42.0), 2)
         unidade = "CELSIUS"
     elif tipo_dado == "FREQUENCIA_CARDIACA":
-        valor = random.randint(60, 120)
+        valor = random.randint(40, 150)
         unidade = "BPM"
     elif tipo_dado == "PRESSAO_ARTERIAL":
         # Um valor genérico para simplificar. O ideal seria ter dois valores (sistólica/diastólica)
-        valor = random.randint(90, 140)
+        valor = random.randint(70, 200)
         unidade = "MMHG"
 
     return {"valor": valor, "tipoDado": tipo_dado, "unidadeMedida": unidade}
@@ -45,6 +45,7 @@ while True:
         # Verifica se a requisição foi bem-sucedida (status 200 ou 201)
         if response.status_code in [200, 201]:
             print("Dados enviados com sucesso!")
+            print("Resposta da API:", response.json())
         else:
             print(f"Erro ao enviar dados: {response.status_code}")
             print(response.text)

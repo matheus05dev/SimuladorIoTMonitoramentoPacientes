@@ -52,9 +52,10 @@ Essa abordagem garante escalabilidade e facilidade de manutenção, alinhando-se
 
 - **Simulação de Sinais Vitais:** Suporte a três tipos de dados: temperatura corporal, frequência cardíaca e pressão arterial.
 - **Envio Automatizado:** Transmissão periódica de leituras via método POST, com intervalo padrão de 5 segundos.
-- **Validação de Faixas:** Valores gerados respeitam limites médicos (ex.: temperatura entre 36.0°C e 40.0°C).
-- **Logging em Tempo Real:** Exibição detalhada no console dos dados enviados e respostas da API.
+- **Validação de Faixas:** Valores gerados respeitam limites médicos (ex.: temperatura entre 30.0°C e 42.0°C para testes abrangentes).
+- **Logging em Tempo Real:** Exibição detalhada no console dos dados enviados e respostas da API, incluindo JSON de retorno.
 - **Tratamento de Erros:** Gestão de falhas de conexão e códigos de resposta HTTP inadequados.
+- **Simulador de Erros:** Versão adicional (SimuladorIOT_Error.py) para testar cenários de erro, com IDs de atendimento aleatórios e valores inválidos/extremos.
 
 ## Integração com o Sistema InfraMed
 
@@ -85,7 +86,8 @@ Essa integração possibilita:
 
 ```
 SimuladorIoTMonitoramentoPacientes/
-├── SimuladorIOT.py          # Arquivo principal do simulador
+├── SimuladorIOT.py          # Simulador do IoT (Caminho Feliz)
+├── SimuladorIOT_Error.py    # Simulador do IoT (Tratamento de Erros)
 └──readme.md                 # Documentação do projeto
 ```
 
@@ -119,18 +121,24 @@ SimuladorIoTMonitoramentoPacientes/
    - Inicie o backend InfraMed na porta 8080.
    - Verifique a conectividade com o endpoint de leituras.
 
-2. **Execução do Simulador:**
+2. **Execução do Simulador (Caminho Feliz):**
 
    ```bash
    python SimuladorIOT.py
    ```
 
-3. **Monitoramento:**
+3. **Execução do Simulador (Tratamento de Erros):**
+
+   ```bash
+   python SimuladorIOT_Error.py
+   ```
+
+4. **Monitoramento:**
 
    - Observe os logs no console para confirmar o envio de dados.
    - Utilize ferramentas como Postman ou o Swagger do backend para validar o recebimento.
 
-4. **Interrupção:**
+5. **Interrupção:**
    - Pressione `Ctrl + C` para encerrar a execução.
 
 ## Configurações Avançadas
