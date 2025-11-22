@@ -1,25 +1,40 @@
 # Simulador IoT para Monitoramento de Pacientes
 
+---
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9+-blue?logo=python&logoColor=white" alt="Python 3.9+">
+  <img src="https://img.shields.io/badge/Status-Concluído-brightgreen" alt="Status: Concluído">
+  <img src="https://img.shields.io/badge/License-MIT-blue" alt="License: MIT">
+</p>
+
+---
+
 ## Sumário
 
-- [Visão Geral do Projeto](#visão-geral-do-projeto)
-- [Objetivos](#objetivos)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Arquitetura e Design](#arquitetura-e-design)
-- [Funcionalidades Principais](#funcionalidades-principais)
-- [Integração com o Sistema InfraMed](#integração-com-o-sistema-inframed)
-- [Diferenciais Técnicos](#diferenciais-técnicos)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Pré-requisitos e Instalação](#pré-requisitos-e-instalação)
-- [Como Executar](#como-executar)
-- [Configurações Avançadas](#configurações-avançadas)
-- [Sobre o Projeto](#sobre-o-projeto)
+- [📖Sobre o Projeto](#-sobre-o-projeto)
+- [🎯Objetivos](#-objetivos)
+- [💻Tecnologias](#-tecnologias)
+- [🏛️Arquitetura e Design](#-arquitetura-e-design)
+- [🏗️Funcionalidades Principais](#-funcionalidades-principais)
+- [🔗Integração com o Sistema InfraMed](#-integração-com-o-sistema-inframed)
+- [📊Diferenciais Técnicos](#-diferenciais-técnicos)
+- [🗂️Estrutura do Projeto](#-estrutura-do-projeto)
+- [🔍Pré-requisitos e Instalação](#-Pré-requisitos-e-instalação)
+- [🚀Como Executar](#-como-executar)
+- [⚙️Configuração](#-configuração)
+- [💡Contexto do Projeto](#-contexto-do-projeto)
+- [✍️Autor](#️-autor)
 
-## Visão Geral do Projeto
+---
+
+## 📖 Sobre o Projeto
 
 O **Simulador IoT para Monitoramento de Pacientes** é um componente essencial do ecossistema InfraMed, desenvolvido para emular o comportamento de dispositivos IoT em ambientes hospitalares. Este simulador facilita a validação e o teste da comunicação entre sensores conectados e o backend da aplicação, assegurando a robustez do sistema de monitoramento contínuo de sinais vitais. Ao gerar e enviar dados simulados de forma automatizada, o projeto permite a avaliação de cenários reais sem a necessidade de hardware físico, contribuindo para uma implementação mais segura e eficiente da saúde digital.
 
-## Objetivos
+---
+
+## 🎯 Objetivos
 
 - **Teste de Integração:** Validar a comunicação HTTP entre dispositivos IoT e a API REST do backend.
 - **Simulação Realista:** Reproduzir leituras de sinais vitais dentro de parâmetros médicos aceitáveis.
@@ -28,17 +43,16 @@ O **Simulador IoT para Monitoramento de Pacientes** é um componente essencial d
 
 ---
 
-## Tecnologias Utilizadas
+## 💻 Tecnologias
 
-- **Python 3.7.9:** Linguagem de programação principal, escolhida por sua simplicidade e eficiência em scripts de automação.
-- **Requests:** Biblioteca para realização de requisições HTTP, garantindo comunicação segura e padronizada com a API.
-- **JSON:** Módulo nativo para serialização e desserialização de dados, essencial para o formato de troca com o backend.
-- **Time:** Utilizado para controle de temporização, permitindo intervalos precisos entre envios de dados.
-- **Random:** Responsável pela geração de valores aleatórios, simulando variações naturais nos sinais vitais.
+- **Python 3.9+:** Linguagem de programação principal, escolhida por sua simplicidade e ecossistema robusto para scripts e automação.
+- **Requests:** Biblioteca padrão de mercado para realizar requisições HTTP de forma simples e eficiente.
+- **JSON:** Módulo nativo para manipulação de dados no formato JSON, essencial para a comunicação com a API.
+- **Time & Random:** Módulos nativos para controle de tempo e geração de dados aleatórios, simulando variações naturais nos sinais vitais.
 
 ---
 
-## Arquitetura e Design
+## 🏛️ Arquitetura e Design
 
 O simulador segue uma arquitetura procedural e modular, otimizada para execução contínua e baixa complexidade. Os componentes principais incluem:
 
@@ -48,22 +62,32 @@ O simulador segue uma arquitetura procedural e modular, otimizada para execuçã
 
 Essa abordagem garante escalabilidade e facilidade de manutenção, alinhando-se aos princípios de Clean Code e modularidade.
 
-## Funcionalidades Principais
+---
+
+## 🏗️ Funcionalidades Principais
 
 - **Simulação de Sinais Vitais:** Suporte a três tipos de dados: temperatura corporal, frequência cardíaca e pressão arterial.
 - **Envio Automatizado:** Transmissão periódica de leituras via método POST, com intervalo padrão de 5 segundos.
-- **Validação de Faixas:** Valores gerados respeitam limites médicos (ex.: temperatura entre 30.0°C e 42.0°C para testes abrangentes).
+- **Simulação de Faixas:** Valores gerados respeitam limites médicos (ex.: temperatura entre 30.0°C e 42.0°C para testes abrangentes).
 - **Logging em Tempo Real:** Exibição detalhada no console dos dados enviados e respostas da API, incluindo JSON de retorno.
 - **Tratamento de Erros:** Gestão de falhas de conexão e códigos de resposta HTTP inadequados.
 - **Simulador de Erros:** Versão adicional (SimuladorIOT_Error.py) para testar cenários de erro, com IDs de atendimento aleatórios e valores inválidos/extremos.
 
-## Integração com o Sistema InfraMed
+---
 
-O simulador interage diretamente com o backend InfraMed através do endpoint `/api/atendimentos/{atendimentoId}/leituras`, enviando payloads JSON estruturados conforme o contrato da API. Cada requisição inclui:
+## 🔗 Integração com o Sistema InfraMed
 
-- **valor:** Valor numérico da medição (float ou int).
-- **tipoDado:** Enumerador especificando o tipo de sinal (TEMPERATURA, FREQUENCIA_CARDIACA, PRESSAO_ARTERIAL).
-- **unidadeMedida:** Unidade correspondente (°C, bpm, mmHg).
+O simulador interage diretamente com o backend InfraMed através do endpoint `/api/leituras/atendimento/{atendimentoId}`, enviando payloads JSON estruturados conforme o contrato da API.
+
+Exemplo de payload:
+
+```json
+{
+  "valor": 36.5,
+  "tipoDado": "TEMPERATURA",
+  "unidadeMedida": "GRAUS_CELSIUS"
+}
+```
 
 Essa integração possibilita:
 
@@ -73,16 +97,16 @@ Essa integração possibilita:
 
 ---
 
-## Diferenciais Técnicos
+## 📊 Diferenciais Técnicos
 
 - **Precisão Médica:** Algoritmos baseados em parâmetros fisiológicos, assegurando testes fiéis à realidade clínica.
 - **Baixo Acoplamento:** Dependências mínimas, facilitando execução em diversos ambientes.
-- **Conformidade com Padrões:** Adesão a protocolos HTTP RESTful, compatível com APIs modernas.
+- **Conformidade com Padrões:** Adesão a protocolos HTTP REST, compatível com APIs modernas.
 - **Extensibilidade:** Estrutura preparada para inclusão de novos tipos de sensores e métricas.
 
 ---
 
-## Estrutura do Projeto
+## 🗂️ Estrutura do Projeto
 
 ```
 SimuladorIoTMonitoramentoPacientes/
@@ -91,7 +115,9 @@ SimuladorIoTMonitoramentoPacientes/
 └──readme.md                 # Documentação do projeto
 ```
 
-## Pré-requisitos e Instalação
+---
+
+## 🔍 Pré-requisitos e Instalação
 
 ### Pré-requisitos
 
@@ -114,7 +140,7 @@ SimuladorIoTMonitoramentoPacientes/
    pip install requests
    ```
 
-## Como Executar
+## 🚀 Como Executar
 
 1. **Preparação do Ambiente:**
 
@@ -141,7 +167,9 @@ SimuladorIoTMonitoramentoPacientes/
 5. **Interrupção:**
    - Pressione `Ctrl + C` para encerrar a execução.
 
-## Configurações Avançadas
+---
+
+## ⚙️ Configuração
 
 O arquivo `SimuladorIOT.py` permite customizações diretas:
 
@@ -154,6 +182,16 @@ Para cenários avançados, considere a criação de subclasses ou módulos adici
 
 ---
 
-## Sobre o Projeto
+## 💡 Contexto do Projeto
 
 Este projeto constitui uma parcela significativa do Trabalho de Conclusão de Curso (TCC) do curso Técnico de Desenvolvimento de Sistemas, ministrado pela Escola SENAI 403 "Antônio Ermírio de Moraes" em Alumínio-SP. Desenvolvido para fins de uso sem o equipamento físico, o Simulador IoT exemplifica a aplicação prática de conceitos de Internet das Coisas (IoT) no setor da saúde, promovendo a inovação e a eficiência em ambientes hospitalares. Além de seu valor acadêmico, o projeto serve como referência para profissionais em desenvolvimento de software, destacando a importância da integração entre hardware e software na saúde conectada.
+
+---
+
+## ✍️ Autor
+
+**Matheus Nunes da Silva**
+
+- **GitHub:** [https://github.com/matheus05dev](https://github.com/matheus05dev)
+
+---
