@@ -3,7 +3,7 @@
 ---
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.9+-blue?logo=python&logoColor=white" alt="Python 3.9+">
+  <img src="https://img.shields.io/badge/Python-3.9.7-blue?logo=python&logoColor=white" alt="Python 3.9.7">
   <img src="https://img.shields.io/badge/Status-Concluído-brightgreen" alt="Status: Concluído">
   <img src="https://img.shields.io/badge/License-MIT-blue" alt="License: MIT">
 </p>
