@@ -1,4 +1,4 @@
-# Simulador IoT para Monitoramento de Pacientes
+# InfraMed - Simulador IoT para Monitoramento de Pacientes
 
 ---
 
